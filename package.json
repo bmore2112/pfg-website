@@ -1,0 +1,15 @@
+{
+  "name": "premiumfangirls",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "node server.js",
+    "build:img": "node scripts/process-images.js"
+  },
+  "dependencies": {
+    "playwright-core": "^1.60.0",
+    "serve-handler": "^6.1.7",
+    "sharp": "^0.34.5"
+  }
+}

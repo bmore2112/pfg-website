@@ -1,0 +1,12 @@
+{
+  "name": "Premiumfangirls",
+  "short_name": "Premiumfangirls",
+  "description": "Miami OnlyFans management agency & agency coaching.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0a0411",
+  "theme_color": "#0a0411",
+  "icons": [
+    { "src": "/assets/logo-512.png", "sizes": "512x512", "type": "image/png" }
+  ]
+}
