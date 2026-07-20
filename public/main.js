@@ -57,38 +57,14 @@ if (counters.length) {
   counters.forEach(el => counterIO.observe(el));
 }
 
-// ---------- Apply form: creator / agency toggle ----------
+// ---------- Apply form ----------
 const form = document.getElementById('applyForm');
 if (form) {
-  const segBtns = form.querySelectorAll('.seg__btn');
-  const creatorFlow = form.querySelector('.form__creatorFlow');
-  const agencyFlow = form.querySelector('.form__agencyFlow');
-
-  function setGoal(goal) {
-    segBtns.forEach(b => {
-      const active = b.dataset.goal === goal;
-      b.classList.toggle('is-active', active);
-      b.setAttribute('aria-selected', String(active));
-    });
-    const isAgency = goal === 'coaching';
-    if (creatorFlow) creatorFlow.hidden = isAgency;
-    if (agencyFlow) agencyFlow.hidden = !isAgency;
-  }
-  segBtns.forEach(b => b.addEventListener('click', () => setGoal(b.dataset.goal)));
-
-  // Same-page coaching buttons
-  document.querySelectorAll('[data-prefill="coaching"]').forEach(el =>
-    el.addEventListener('click', () => setGoal('coaching')));
-
-  // Cross-page deep link: /apply?goal=coaching
-  const goalParam = new URLSearchParams(location.search).get('goal');
-  if (goalParam === 'coaching' || goalParam === 'creator') setGoal(goalParam);
-
   form.addEventListener('submit', (e) => {
     e.preventDefault();
     if (!form.reportValidity()) return;
     const data = Object.fromEntries(new FormData(form).entries());
-    data.goal = form.querySelector('.seg__btn.is-active').dataset.goal;
+    data.goal = 'creator';
     // TODO: POST to a real endpoint, e.g. fetch('/api/apply', {...})
     console.log('Application submitted:', data);
     const success = document.getElementById('formSuccess');
