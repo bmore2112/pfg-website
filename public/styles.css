@@ -75,7 +75,7 @@ a{color:inherit;text-decoration:none}
 
 /* ---------- Nav ---------- */
 .nav{position:fixed;inset:0 0 auto;z-index:100;transition:background .3s,backdrop-filter .3s,border-color .3s}
-.nav.scrolled{background:rgba(0,0,0,.72);backdrop-filter:blur(16px) saturate(140%);border-bottom:1px solid var(--line)}
+.nav.scrolled{background:rgba(0,0,0,.82);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
 .nav__inner{display:flex;align-items:center;gap:22px;width:min(var(--maxw),94vw);margin-inline:auto;padding:14px 0}
 .nav__brand img{height:52px;width:auto;filter:drop-shadow(0 0 14px rgba(255,45,155,.55))}
 .nav__links{display:flex;gap:26px;margin-left:auto;font-weight:500;font-size:.95rem}
@@ -102,9 +102,9 @@ a{color:inherit;text-decoration:none}
     radial-gradient(78% 58% at 50% 46%, rgba(8,3,16,.55), transparent 74%);
 }
 .hero__sun{position:absolute;z-index:-2;right:8%;top:14%;width:min(32vw,340px);aspect-ratio:1;border-radius:50%;
-  background:radial-gradient(circle, rgba(255,150,205,.11), rgba(255,90,170,.035) 45%, transparent 70%);filter:blur(10px);mix-blend-mode:screen;pointer-events:none}
-.hero__grain{position:absolute;inset:0;z-index:-1;opacity:.10;pointer-events:none;
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");mix-blend-mode:overlay}
+  background:radial-gradient(circle, rgba(255,150,205,.16), rgba(255,90,170,.05) 45%, transparent 70%);filter:blur(10px);pointer-events:none}
+.hero__grain{position:absolute;inset:0;z-index:-1;opacity:.06;pointer-events:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
 .hero__content{width:min(var(--maxw),92vw);margin-inline:auto;padding:120px 0 90px;text-align:center}
 .hero .eyebrow{text-shadow:0 1px 4px rgba(0,0,0,.65)}
 .hero__title{font-family:'Anton',sans-serif;font-weight:400;text-transform:uppercase;color:#fff;
@@ -115,7 +115,7 @@ a{color:inherit;text-decoration:none}
 .hero__sub{font-size:clamp(1.05rem,2vw,1.3rem);font-weight:600;color:#f4f4f8;max-width:56ch;margin:0 auto 34px;text-shadow:0 1px 3px rgba(0,0,0,.6),0 2px 18px rgba(0,0,0,.55)}
 .hero__cta{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:30px;justify-content:center}
 .hero__chips{display:flex;gap:10px;flex-wrap:wrap;list-style:none;padding:0;margin:0;font-size:.9rem;color:var(--pink-soft);justify-content:center}
-.hero__chips li{background:rgba(255,255,255,.06);border:1px solid var(--line);padding:8px 14px;border-radius:999px;backdrop-filter:blur(6px)}
+.hero__chips li{background:rgba(20,10,26,.42);border:1px solid var(--line);padding:8px 14px;border-radius:999px}
 .hero__scroll{position:absolute;bottom:22px;left:50%;transform:translateX(-50%);font-size:.7rem;letter-spacing:.3em;text-transform:uppercase;color:var(--muted);display:flex;flex-direction:column;align-items:center;gap:8px}
 .hero__scroll span{width:1px;height:36px;background:linear-gradient(var(--pink),transparent);animation:drop 1.8s ease-in-out infinite}
 @keyframes drop{0%,100%{opacity:.3;transform:scaleY(.5)}50%{opacity:1;transform:scaleY(1)}}
@@ -231,6 +231,13 @@ a{color:inherit;text-decoration:none}
 .reveal{opacity:0;transform:translateY(26px);transition:opacity .7s cubic-bezier(.2,.8,.2,1),transform .7s cubic-bezier(.2,.8,.2,1)}
 .reveal.in{opacity:1;transform:none}
 @media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}}
+
+/* ---------- Perf: skip painting/layout of offscreen sections ---------- */
+.section{content-visibility:auto;contain-intrinsic-size:auto 640px}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important}
+  .hero__scroll span,.marquee__track{animation:none}
+}
 
 /* ---------- Responsive ---------- */
 @media (max-width:1000px){

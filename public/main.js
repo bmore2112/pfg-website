@@ -33,6 +33,21 @@ const io = new IntersectionObserver((entries) => {
 }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
 document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 
+// ---------- Hero video: pause offscreen / respect reduced motion ----------
+const heroVideo = document.querySelector('.hero__media');
+if (heroVideo) {
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
+  if (reduce.matches) heroVideo.pause();
+  const vIO = new IntersectionObserver((entries) => {
+    entries.forEach((e) => {
+      if (reduce.matches) return;
+      if (e.isIntersecting) heroVideo.play().catch(() => {});
+      else heroVideo.pause();
+    });
+  }, { threshold: 0.05 });
+  vIO.observe(heroVideo);
+}
+
 // ---------- Animated counters ----------
 const fmt = (n) => n.toLocaleString('en-US');
 const runCounter = (el) => {
