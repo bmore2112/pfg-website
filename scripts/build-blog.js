@@ -11,6 +11,10 @@ import { readdirSync, readFileSync, writeFileSync, mkdirSync, existsSync } from 
 
 const V = 'v=21', SV = 'v=24', MV = 'v=8', OFV = 'v=14';
 const SITE = 'https://premiumfangirls.com';
+// Live origin that actually serves assets today (custom domain not pointed yet).
+// Used only for absolute og:image URLs so link previews resolve. Switch to SITE
+// once premiumfangirls.com is live on Vercel.
+const OG = 'https://pfg-website2.vercel.app';
 const DIR = 'content/blog';
 
 const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
@@ -35,7 +39,7 @@ const head = (title, desc, path, ogType = 'website') => `<!DOCTYPE html>
 <meta property="og:title" content="${esc(title)}" />
 <meta property="og:description" content="${esc(desc)}" />
 <meta property="og:url" content="${SITE}${path}" />
-<meta property="og:image" content="${SITE}/assets/og.jpg" />
+<meta property="og:image" content="${OG}/assets/og.jpg" />
 <meta name="twitter:card" content="summary_large_image" />
 <link rel="icon" type="image/png" href="/assets/logo-512.png?${V}" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
