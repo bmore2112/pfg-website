@@ -9,7 +9,7 @@
 
 import { readdirSync, readFileSync, writeFileSync, mkdirSync, existsSync } from 'fs';
 
-const V = 'v=21', SV = 'v=24', MV = 'v=8', OFV = 'v=14';
+const V = 'v=22', SV = 'v=24', MV = 'v=8', OFV = 'v=14';
 const SITE = 'https://premiumfangirls.com';
 // Live origin that actually serves assets today (custom domain not pointed yet).
 // Used only for absolute og:image URLs so link previews resolve. Switch to SITE
@@ -53,7 +53,7 @@ const nav = `
 <header class="nav nav--solid" id="nav">
   <div class="nav__inner">
     <a class="nav__brand" href="/" aria-label="Premiumfangirls home">
-      <img src="/assets/logo.png?${V}" alt="Premiumfangirls logo" width="1196" height="444" />
+      <img src="/assets/logo.png?${V}" alt="Premiumfangirls logo" width="944" height="233" />
     </a>
     <nav class="nav__links" aria-label="Primary">
       <a href="/services">Services</a>
@@ -80,7 +80,7 @@ const footer = `</main>
 <footer class="footer">
   <div class="wrap footer__inner">
     <div class="footer__brand">
-      <img src="/assets/logo.png?${V}" alt="Premiumfangirls" width="1196" height="444" />
+      <img src="/assets/logo.png?${V}" alt="Premiumfangirls" width="944" height="233" />
       <p>A Florida-based creator management and production company. Management, marketing, brand building, production, podcasts, streams, and monetization. One team behind every creator.</p>
       <p class="footer__of">Managing creators on <img class="of-logo" src="/assets/onlyfans.png?${OFV}" alt="OnlyFans" width="512" height="512" /></p>
     </div>
