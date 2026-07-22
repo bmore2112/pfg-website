@@ -303,7 +303,9 @@ a{color:inherit;text-decoration:none}
 .section{content-visibility:auto;contain-intrinsic-size:auto 640px}
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important}
-  .hero__scroll span,.marquee__track{animation:none}
+  .hero__scroll span{animation:none}
+  /* Brand marquee is intentional and stays scrolling even with reduced motion */
+  .marquee__track{animation:marquee 26s linear infinite!important;animation-duration:26s!important;animation-iteration-count:infinite!important}
 }
 
 /* ---------- Responsive ---------- */
